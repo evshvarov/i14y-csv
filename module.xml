@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="interoperability-sample.ZPM">
+  <Document name="esh-i14y-csv.ZPM">
     <Module>
-      <Name>interoperability-sample</Name>
-      <Description>A simple IRIS interoperability application - reads data from Reddit and filter it.</Description>
-      <Version>0.0.5</Version>
+      <Name>esh-i14y-csv</Name>
+      <Description>A simple IRIS interoperability application - transforms csv data.</Description>
+      <Version>1.0.0</Version>
       <Packaging>module</Packaging>
-      <Dependencies>
-        <ModuleReference>
-          <Name>sslclient</Name>
-          <Version>1.0.1</Version>
-        </ModuleReference>
-      </Dependencies>
       <SourcesRoot>src</SourcesRoot>
-      <Resource Name="Ens.Config.DefaultSettings.ESD"/>
-      <Resource Name="TestLookupTable.LUT"/>
-      <Resource Name="dc.Reddit.PKG"/>
-      <Resource Name="dc.Demo.PKG"/>
+      <!-- <Resource Name="Ens.Config.DefaultSettings.ESD"/>
+      <Resource Name="TestLookupTable.LUT"/> -->
+      <Resource Name="esh.PKG"/>
       <SystemRequirements Version=">=2020.1" Interoperability="enabled" />
     </Module>
   </Document>

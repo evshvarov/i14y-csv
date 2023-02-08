@@ -1,19 +1,20 @@
  [![Gitter](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/iris-interoperability-template)
  [![Quality Gate Status](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Firis-interoperability-template&metric=alert_status)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Firis-interoperability-template)
  [![Reliability Rating](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Firis-interoperability-template&metric=reliability_rating)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Firis-interoperability-template)
-# iris-interoperability-template
-This is a template of InterSystems IRIS Interoperability solution.
-It contains a simple interoperablity solution which reads data from Reddit, filters it and outputs into file or sends via email.
-
+# iris-interoperability-csv-example
+This is a simplest example to transform one CSV to another (using Record Mapper)
 ## What The Sample Does
 
-This sample has an interoperability [production](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Demo/Production.cls) with an inbound [Reddit Adapter](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Reddit/InboundAdapter.cls) which is used by a [Business Service](https://github.com/intersystems-community/iris-interoperability-template/blob/master/src/dc/Demo/RedditService.cls) to read data from Reddit.com.
-It reads from reddit.com/new/.json every 15 sec.
-You can alter both the URL and frequency in the service's settings.
-<img width="1411" alt="Screenshot 2020-10-29 at 19 33 14" src="https://user-images.githubusercontent.com/2781759/97603605-a6d0af00-1a1d-11eb-99cc-481efadb0ec6.png">
+It is an example of using IRIS interoperability to transform data in CSV using Data Transformation class.
+What this interoperability does:
+1. It transforms csv with Farenheit temperature data observations and results into csv with temperature in Celsius.
+it expects  csv files in the /in folder with the structure of two columnns: 1-day of obser (integer), 2 - temperature in Farenheight (integer). [Here is an example](https://github.com/evshvarov/i14y-csv/blob/master/data/data.csv).
 
-The production has a business process with a rule, which filters on news that mentions cats and dogs. The business process then sends this data to a business operation which either saves data to a source folder /output/Dog.txt or /output/Cat.txt.
-<img width="864" alt="Screenshot 2020-10-29 at 19 38 58" src="https://user-images.githubusercontent.com/2781759/97606568-fcf32180-1a20-11eb-90de-4257dd2cf552.png"> 
+2. Every record of the incoming csv is being send as an interoperability message to transformation rule. I used RecordMapper to generate the [message object class](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/CelciusCSV/Record.cls) and to use [record mapper class](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/CelciusCSV.cls) to parse incoming csv and to write csv in a resulting file.
+
+3. Interoperability production waits for csv in /in folder and then takes every record from csv as a message to a [routing rule](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/F2CRoutingRule.cls), which uses [Data Transfomration](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/F2C.cls) for all the records. 
+4. After transfomration every record is being written one-by-one into the file with the same name in /out folder.
+
 
 ## Prerequisites
 Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker desktop](https://www.docker.com/products/docker-desktop) installed.
@@ -22,13 +23,13 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 
 Open IRIS Namespace with Interoperability Enabled.
 Open Terminal and call:
-USER>zpm "install interoperability-sample"
+USER>zpm "install esh-i14y-csv"
 
 ## Installation: Docker
 Clone/git pull the repo into any local directory
 
 ```
-$ git clone https://github.com/intersystems-community/iris-interoperability-template.git
+$ git clone https://github.com/evshvarov/i14y-csv.git
 ```
 
 Open the terminal in this directory and run:
@@ -47,14 +48,16 @@ $ docker-compose up -d
 
 ## How to Run the Sample
 
-Open the [production](http://localhost:52795/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.Demo.Production) and start it.
+Open the [production](http://localhost:52796/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=esh.i14y.csv.F2CProduction) and start it.
 It will start gathering news from reddit.com/new/ and filter it on cats and dogs into /output/Dog.txt or /output/Cat.txt files.
 
-You can alter the [business rule](http://localhost:52795/csp/user/EnsPortal.RuleEditor.zen?RULE=dc.Demo.FilterPostsRoutingRule) to filter for different words, or to use an email operation to send posts via email.
-<img width="1123" alt="Screenshot 2020-10-29 at 20 05 34" src="https://user-images.githubusercontent.com/2781759/97607761-77707100-1a22-11eb-9ce8-0d14d6f6e315.png">
+You can alter the [business rule](http://localhost:52796/csp/user/EnsPortal.RuleEditor.zen?RULE=esh.i14y.csv.F2CRoutingRule) to add any different logic. initialy all the messages follow one transformation.
 
-## How to alter the template 
-Use the green    "Use this template" button on Github to copy files into a new repository and build a new IRIS interoperability solution using this one as an example.
+
+You can also check how the [transformation works](http://localhost:52796/csp/user/EnsPortal.DTLEditor.zen?DT=esh.i14y.csv.F2C.dtl). Here you can see the simple logic of changing Farenheit data to Celcius.
+
+
+## Additional information 
 
 This repository is ready to code in VSCode with the ObjectScript plugin.
 Install [VSCode](https://code.visualstudio.com/), [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugin and open the folder in VSCode.

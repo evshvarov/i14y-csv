@@ -4,5 +4,6 @@
     Do ##class(Security.Users).UnExpireUserPasswords("*")
 
     zn "USER"
-    zpm "load /home/irisowner/irisbuild/ -v":1:1
+    
+    zpm "load /home/irisowner/irisdev/ -v":1:1
     halt
