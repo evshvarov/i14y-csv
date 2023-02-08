@@ -12,3 +12,4 @@ services:
       - 53773
     volumes:
       - ./:/home/irisowner/irisdev
+      - ./data/:/irisdev/app/
