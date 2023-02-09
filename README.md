@@ -5,6 +5,8 @@
 This is a simplest example to transform one CSV to another (using Record Mapper)
 ## What The Sample Does
 
+To make the production run copy data/data.csv and paste into /in folder. the transformed data.csv should appear in /out.
+
 It is an example of using IRIS interoperability to transform data in CSV using Data Transformation class.
 What this interoperability does:
 1. It transforms csv with Farenheit temperature data observations and results into csv with temperature in Celsius.
