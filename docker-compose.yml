@@ -5,10 +5,11 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    command: --check-caps false
+    command: --check-caps false --ISCAgent false
     ports: 
       - 1972
       - 52796:52773
       - 53773
     volumes:
       - ./:/home/irisowner/irisdev
+      - ./data/:/irisdev/app/
