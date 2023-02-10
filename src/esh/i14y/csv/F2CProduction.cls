@@ -19,7 +19,6 @@ XData ProductionDefinition
     <Setting Target="Host" Name="RecordMap">esh.i14y.csv.CelciusCSV</Setting>
     <Setting Target="Adapter" Name="FilePath">/home/irisowner/irisdev/out</Setting>
     <Setting Target="Host" Name="Filename">%f</Setting>
-    <Setting Target="Host" Name="HeaderCount">1</Setting>
   </Item>
 </Production>
 }

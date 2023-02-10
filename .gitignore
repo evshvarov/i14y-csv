@@ -1,4 +1,4 @@
 .DS_Store
 data.txt
-iris-main.log
-
+iris-main.*
+data.csv
