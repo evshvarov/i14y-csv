@@ -15,8 +15,10 @@
       "active": true,
       "links": {
         "Production": "http://localhost:${port}/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=esh.i14y.csv.F2CProduction",
-        "Rule": "http://localhost:${port}/csp/user/EnsPortal.RuleEditor.zen?RULE=dc.Demo.FilterPostsRoutingRule",
-        "Transformation": "http://localhost:52796/csp/user/EnsPortal.DTLEditor.zen?DT=esh.i14y.csv.F2C.dtl"
+        "Rule": "http://localhost:52796/csp/user/EnsPortal.RuleEditor.zen?RULE=esh.i14y.csv.F2CRoutingRule",
+        "Transformation": "http://localhost:52796/csp/user/EnsPortal.DTLEditor.zen?DT=esh.i14y.csv.F2C.dtl",
+        "Record Mapper": "http://localhost:52796/csp/user/EnsPortal.RecordMapper.cls?MAP=esh.i14y.csv.CelciusCSV&SHOWSAMPLE=1",
+        "Message Viewer": "http://localhost:52796/csp/user/EnsPortal.MessageViewer.zen?$NAMESPACE=USER"
       }
     }
 

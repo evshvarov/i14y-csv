@@ -12,6 +12,7 @@ XData ProductionDefinition
   <Item Name="FileIn" Category="" ClassName="EnsLib.RecordMap.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="RecordMap">esh.i14y.csv.CelciusCSV</Setting>
     <Setting Target="Adapter" Name="FilePath">/home/irisowner/irisdev/in</Setting>
+    <Setting Target="Adapter" Name="FileSpec">*.csv</Setting>
     <Setting Target="Host" Name="TargetConfigNames">Router</Setting>
     <Setting Target="Host" Name="HeaderCount">1</Setting>
   </Item>
