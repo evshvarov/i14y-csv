@@ -1,4 +1,4 @@
-/// 
+/// business rule to run transformation
 Class esh.i14y.csv.F2CRoutingRule Extends Ens.Rule.Definition
 {
 
@@ -18,3 +18,4 @@ XData RuleDefinition [ XMLNamespace = "http://www.intersystems.com/rule" ]
 }
 
 }
+

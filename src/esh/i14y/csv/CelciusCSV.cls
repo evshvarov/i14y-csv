@@ -1,3 +1,4 @@
+/// ANNOTATION: This is a CSV Map for a simple 2 col CSV with days and temperature
 /// RECORDMAP: Modified during compilation of RecordMap 'esh.i14y.csv.CelciusCSV'
 /// on 2023-01-21 at 17:33:11.185 [2023-01-21 17:33:11.185 UTC]
 /// by user _SYSTEM
@@ -141,10 +142,11 @@ ClassMethod getType() As EnsLib.RecordMap.Model.DataType.RecordType [ CodeMode =
 
 XData RecordMap [ XMLNamespace = "http://www.intersystems.com/Ensemble/RecordMap" ]
 {
-<Record xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="esh.i14y.csv.CelciusCSV" type="delimited" char_encoding="UTF-8" targetClassname="esh.i14y.csv.CelciusCSV.Record" recordTerminator="\x0a">
+<Record xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="esh.i14y.csv.CelciusCSV" type="delimited" char_encoding="UTF-8" targetClassname="esh.i14y.csv.CelciusCSV.Record" complexBatchManaged="0" padFromLeft="0" recordTerminator="\x0a" allowEmbeddedRecordTerminator="0" allowEarlyTerminator="0">
   <Separators>
     <Separator>,</Separator>
   </Separators>
+  <annotation>This is a CSV Map for a simple 2 col CSV with days and temperature</annotation>
   <Field name="Day" required="0" ignored="0" datatype="%Integer" repeating="0">
   </Field>
   <Field name="Temperature" required="0" ignored="0" datatype="%Integer" repeating="0">
@@ -153,3 +155,4 @@ XData RecordMap [ XMLNamespace = "http://www.intersystems.com/Ensemble/RecordMap
 }
 
 }
+
