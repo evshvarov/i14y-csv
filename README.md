@@ -14,7 +14,7 @@ it expects  csv files in the /in folder with the structure of two columnns: 1-da
 
 2. Every record of the incoming csv is being send as an interoperability message to transformation rule. I used RecordMapper to generate the [message object class](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/CelciusCSV/Record.cls) and to use [record mapper class](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/CelciusCSV.cls) to parse incoming csv and to write csv in a resulting file.
 
-3. Interoperability production waits for csv in /in folder and then takes every record from csv as a message to a [routing rule](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/F2CRoutingRule.cls), which uses [Data Transfomration](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/F2C.cls) for all the records. 
+3. Interoperability production waits for csv in /in folder and then takes every record from csv as a message to a [routing rule](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/F2CRoutingRule.cls), which uses [Data Transfomration](https://github.com/evshvarov/i14y-csv/blob/master/src/esh/i14y/csv/F2C.cls) for all the records.
 4. After transfomration every record is being written one-by-one into the file with the same name in /out folder.
 
 
@@ -51,7 +51,8 @@ $ docker-compose up -d
 ## How to Run the Sample
 
 Open the [production](http://localhost:52796/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=esh.i14y.csv.F2CProduction) and start it.
-It will start gathering news from reddit.com/new/ and filter it on cats and dogs into /output/Dog.txt or /output/Cat.txt files.
+duplicate data.csv and put it into /in folder.
+The production will process the file in /in folder, create 3 messages (according to a number of lines in the csv) and transform Farenheit into Celcius and put it in a new file at /out folder.
 
 You can alter the [business rule](http://localhost:52796/csp/user/EnsPortal.RuleEditor.zen?RULE=esh.i14y.csv.F2CRoutingRule) to add any different logic. initialy all the messages follow one transformation.
 
@@ -59,7 +60,7 @@ You can alter the [business rule](http://localhost:52796/csp/user/EnsPortal.Rule
 You can also check how the [transformation works](http://localhost:52796/csp/user/EnsPortal.DTLEditor.zen?DT=esh.i14y.csv.F2C.dtl). Here you can see the simple logic of changing Farenheit data to Celcius.
 
 
-## Additional information 
+## Additional information
 
 This repository is ready to code in VSCode with the ObjectScript plugin.
 Install [VSCode](https://code.visualstudio.com/), [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugin and open the folder in VSCode.
